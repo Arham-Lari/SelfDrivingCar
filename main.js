@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 
 const car = new Car({
     position : {
-        x:100,
+        x:road.getLaneCenter(1),
         y:100,
     },
     width : 30,
