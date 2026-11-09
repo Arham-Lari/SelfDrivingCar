@@ -13,10 +13,13 @@ const car = new Car({
     height : 50
 })
 
+const road = new Road(canvas.width/2,canvas.width);
+
 
 function animation(){
     requestAnimationFrame(animation);
     canvas.height = window.innerHeight;
+    road.draw(ctx);
     car.draw(ctx);
     car.update();
 }

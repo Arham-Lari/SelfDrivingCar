@@ -79,6 +79,6 @@ class Car{
         }
 
         this.position.x -= Math.sin(this.angle)* this.speed;
-        this.position.y -=  this.speed;
+        this.position.y -=  Math.cos(this.angle)* this.speed;
     }
 }
