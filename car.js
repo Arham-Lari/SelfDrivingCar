@@ -1,16 +1,16 @@
 class Car{
     constructor({
      position,
-     velocity,
      width,
      height,
      color,
     }){
         this.position = position;
-        this.velocity = velocity;
         this.width = width;
         this.height = height;
         this.color = color;
+
+        this.controls = new Controls();
     }
 
     draw(){
@@ -22,5 +22,11 @@ class Car{
             this.height
         );
         ctx.fill();
+    }
+
+    update(){
+        if(this.controls.forward) this.position.y -= 2;
+
+        if(this.controls.backword) this.position.y += 2;
     }
 }

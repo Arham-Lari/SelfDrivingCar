@@ -13,6 +13,14 @@ const car = new Car({
     height : 50
 })
 
-car.draw();
+
+function animation(){
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    requestAnimationFrame(animation);
+    car.draw();
+    car.update();
+}
+
+animation();
 
 
