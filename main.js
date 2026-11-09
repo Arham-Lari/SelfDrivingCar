@@ -15,8 +15,8 @@ const car = new Car({
 
 
 function animation(){
-    ctx.clearRect(0,0,canvas.width,canvas.height)
     requestAnimationFrame(animation);
+    canvas.height = window.innerHeight;
     car.draw();
     car.update();
 }
