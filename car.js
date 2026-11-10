@@ -16,6 +16,7 @@ class Car{
         this.friction = 0.05;
         this.angle = 0;
 
+        this.sensor = new Sensor(this);
         this.controls = new Controls();
     }
 
@@ -32,6 +33,8 @@ class Car{
         );
         ctx.fill();
         ctx.restore();
+
+        this.sensor.draw(ctx);
     }
 
     update(){
@@ -80,5 +83,8 @@ class Car{
 
         this.position.x -= Math.sin(this.angle)* this.speed;
         this.position.y -=  Math.cos(this.angle)* this.speed;
+
+        //sensor update method
+        this.sensor.update();
     }
 }
