@@ -17,13 +17,12 @@ const car = new Car({
 })
 
 function animation(){
-    car.update();
+    car.update(road.border);
     canvas.height = window.innerHeight;
 
     ctx.save();
     ctx.translate(0,-car.position.y+canvas.height*0.5);
 
-    console.log(car.position.y)
 
     road.draw(ctx);
     car.draw(ctx);

@@ -37,8 +37,15 @@ class Car{
         this.sensor.draw(ctx);
     }
 
-    update(){
-        //move forward
+    update(roadboarder){
+        this.#move();
+
+        //sensor update method
+        this.sensor.update(roadboarder);
+    }
+
+    #move(){
+
         if(this.controls.forward){
             this.speed += this.acceration;
         }
@@ -84,7 +91,5 @@ class Car{
         this.position.x -= Math.sin(this.angle)* this.speed;
         this.position.y -=  Math.cos(this.angle)* this.speed;
 
-        //sensor update method
-        this.sensor.update();
     }
 }

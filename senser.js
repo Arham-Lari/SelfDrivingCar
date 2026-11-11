@@ -6,16 +6,17 @@ class Sensor{
         this.rayspread = Math.PI/4;
 
         this.rays = [];
+        this.readings = [];
     }
 
-    update(){
+    update(roadboarders){
         this.rays = [];
         for(let i = 0 ; i < this.raycount ; i++){
             const RayAngle = lerp(
                 this.rayspread,
                 -this.rayspread,
                 i/(this.raycount - 1)
-            );
+            )+this.car.angle;
 
             const start = {x:this.car.position.x,y:this.car.position.y};
             const end = {
@@ -25,22 +26,73 @@ class Sensor{
 
             this.rays.push([start,end]);
         }
+
+        this.readings = [];
+        for(let i = 0; i< this.rays.length; i++){
+            this.readings.push(
+                this.#getReadings(this.rays[i],roadboarders)
+            )
+        }
     }
 
     draw(ctx){
         for(let i =0 ; i< this.raycount ; i++){
+            let end = this.rays[i][1];
+            if(this.readings[i]){
+                end = this.readings[i];
+            }
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokestye = "yellow";
+            ctx.strokeStyle = "yellow";
             ctx.moveTo(
                 this.rays[i][0].x,
                 this.rays[i][0].y
             );
             ctx.lineTo(
-                this.rays[i][1].x,
-                this.rays[i][1].y,
+                end.x,
+                end.y,
             );
             ctx.stroke();
+
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "red";
+            ctx.moveTo(
+                this.rays[i][1].x,
+                this.rays[i][1].y
+            );
+            ctx.lineTo(
+                end.x,
+                end.y,
+            );
+            ctx.stroke();
+        }
+    }
+
+    #getReadings(ray,roadboarders){
+        
+        let touches = [];
+
+        for(let i = 0; i< roadboarders.length ; i++){
+
+            const touch = getInterSection(
+                ray[0],
+                ray[1],
+                roadboarders[i][0],
+                roadboarders[i][1],
+            )
+
+            if(touch){
+                touches.push(touch);
+            }
+        }
+
+        if(touches.length == 0){
+            return null;
+        }else{
+            const offsets = touches.map(touch => touch.offset);
+            const minOffset = Math.min(...offsets);
+            return touches.find(touch => touch.offset == minOffset);
         }
     }
 }
