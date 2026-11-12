@@ -59,7 +59,7 @@ class Sensor{
             ctx.strokeStyle = "black";
             ctx.moveTo(
                 this.rays[i][1].x,
-                this.rays[i][1].y
+                this.rays[i][1].y 
             );
             ctx.lineTo(
                 end.x,
