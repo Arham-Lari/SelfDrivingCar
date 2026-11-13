@@ -15,6 +15,7 @@ class Car{
         this.max_speed = 3;
         this.friction = 0.05;
         this.angle = 0;
+        this.damage = false;
 
         this.sensor = new Sensor(this);
         this.controls = new Controls();
@@ -25,6 +26,7 @@ class Car{
         this.#move();
 
         this.polygon = this.#createPolygon();
+        this.damage = this.#assesDamage(roadboarder);
 
         //sensor update method
         this.sensor.update(roadboarder);
@@ -32,7 +34,7 @@ class Car{
 
     draw(ctx){
 
-
+        ctx.fillStyle = (this.damage ? "gray" : "black");
         ctx.beginPath();
         ctx.moveTo(this.polygon[0].x,this.polygon[0].y);
         for(let i = 1; i < this.polygon.length ; i++){
@@ -41,6 +43,15 @@ class Car{
         ctx.fill();
 
         this.sensor.draw(ctx);
+    }
+
+    #assesDamage(roadboarder){
+        for(let i = 0; i < roadboarder.length ; i++){
+            if(polygonIntesection(this.polygon,roadboarder[i])){
+                return true;
+            }
+        }
+        return false;
     }
 
     #createPolygon(){
