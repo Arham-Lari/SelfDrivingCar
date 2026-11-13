@@ -32,9 +32,9 @@ const traffic = [
 
 function animation(){
     for(let i = 0; i < traffic.length ; i++){
-        traffic[i].update(road.border);
+        traffic[i].update(road.border,[]);
     }
-    car.update(road.border);
+    car.update(road.border,traffic);
     canvas.height = window.innerHeight;
 
     ctx.save();

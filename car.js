@@ -26,15 +26,15 @@ class Car{
     }
 
 
-    update(roadboarder){
+    update(roadboarder,traffic){
         if(!this.damage){
         this.#move();
         this.polygon = this.#createPolygon();
-        this.damage = this.#assesDamage(roadboarder);
+        this.damage = this.#assesDamage(roadboarder,traffic);
         }
         //sensor update method
         if(this.sensor){
-            this.sensor.update(roadboarder);
+            this.sensor.update(roadboarder,traffic);
         }
     }
 
@@ -53,12 +53,19 @@ class Car{
         }
     }
 
-    #assesDamage(roadboarder){
+    #assesDamage(roadboarder,traffic){
         for(let i = 0; i < roadboarder.length ; i++){
             if(polygonIntesection(this.polygon,roadboarder[i])){
                 return true;
             }
         }
+
+        for(let i = 0; i < traffic.length ; i++){
+            if(polygonIntesection(this.polygon,traffic[i].polygon)){
+                return true;
+            }
+        }
+
         return false;
     }
 
