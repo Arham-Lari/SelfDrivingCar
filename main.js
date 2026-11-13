@@ -15,6 +15,7 @@ const car = new Car({
     width : 30,
     height : 50,
     controlType:"KEY",
+    color:"blue"
 })
 
 const traffic = [
@@ -26,7 +27,8 @@ const traffic = [
         width:30,
         height : 50,
         controlType:"DUMMY",
-        max_speed : 2
+        max_speed : 2,
+        color: "red"
     })
 ]
 
