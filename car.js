@@ -23,11 +23,11 @@ class Car{
 
 
     update(roadboarder){
+        if(!this.damage){
         this.#move();
-
         this.polygon = this.#createPolygon();
         this.damage = this.#assesDamage(roadboarder);
-
+        }
         //sensor update method
         this.sensor.update(roadboarder);
     }

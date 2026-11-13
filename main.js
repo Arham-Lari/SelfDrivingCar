@@ -16,13 +16,30 @@ const car = new Car({
     height : 50
 })
 
+const traffic = [
+    new Car({
+        position :{
+            x:road.getLaneCenter(1),
+            y:-100,
+        },
+        width:30,
+        height : 50
+    })
+]
+
 function animation(){
+    for(let i = 0; i < traffic.length ; i++){
+        traffic[i].update(road.border);
+    }
     car.update(road.border);
     canvas.height = window.innerHeight;
 
     ctx.save();
     ctx.translate(0,-car.position.y+canvas.height*0.5);
 
+    for(let i = 0 ; i< traffic.length ; i++){
+        traffic[i].draw(ctx);
+    }
 
     road.draw(ctx);
     car.draw(ctx);
