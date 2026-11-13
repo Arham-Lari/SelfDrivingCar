@@ -4,6 +4,7 @@ class Car{
      width,
      height,
      color,
+     controlType,
     }){
         this.position = position;
         this.width = width;
@@ -18,7 +19,7 @@ class Car{
         this.damage = false;
 
         this.sensor = new Sensor(this);
-        this.controls = new Controls();
+        this.controls = new Controls(controlType);
     }
 
 

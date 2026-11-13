@@ -13,7 +13,8 @@ const car = new Car({
         y:100,
     },
     width : 30,
-    height : 50
+    height : 50,
+    controlType:"KEY",
 })
 
 const traffic = [
@@ -23,7 +24,8 @@ const traffic = [
             y:-100,
         },
         width:30,
-        height : 50
+        height : 50,
+        controlType:"DUMMY"
     })
 ]
 
