@@ -19,7 +19,9 @@ class Car{
         this.angle = 0;
         this.damage = false;
 
-        this.sensor = new Sensor(this);
+        if(controlType != "DUMMY"){
+            this.sensor = new Sensor(this);
+        }
         this.controls = new Controls(controlType);
     }
 
@@ -31,7 +33,9 @@ class Car{
         this.damage = this.#assesDamage(roadboarder);
         }
         //sensor update method
-        this.sensor.update(roadboarder);
+        if(this.sensor){
+            this.sensor.update(roadboarder);
+        }
     }
 
     draw(ctx){
@@ -44,7 +48,9 @@ class Car{
         }
         ctx.fill();
 
-        this.sensor.draw(ctx);
+        if(this.sensor){
+            this.sensor.draw(ctx);
+        }
     }
 
     #assesDamage(roadboarder){
