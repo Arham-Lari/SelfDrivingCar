@@ -5,6 +5,7 @@ class Car{
      height,
      color,
      controlType,
+     max_speed = 3,
     }){
         this.position = position;
         this.width = width;
@@ -13,7 +14,7 @@ class Car{
 
         this.speed = 0;
         this.acceration = 0.2;
-        this.max_speed = 3;
+        this.max_speed = max_speed;
         this.friction = 0.05;
         this.angle = 0;
         this.damage = false;

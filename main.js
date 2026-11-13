@@ -25,7 +25,8 @@ const traffic = [
         },
         width:30,
         height : 50,
-        controlType:"DUMMY"
+        controlType:"DUMMY",
+        max_speed : 2
     })
 ]
 
